@@ -1,7 +1,7 @@
 {
-  "name": "certisign-server",
+  "name": "hone-server",
   "version": "0.1.0",
-  "description": "Certisign Server",
+  "description": "Hone Server",
   "author": "Rodolfo Mota Martins <rodolfomotamartins@gmail.com>",
   "scripts": {
     "start": "node app.js"

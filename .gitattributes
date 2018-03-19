@@ -1,0 +1,83 @@
+## LF NORMALIZATION
+* text=auto
+
+## SOURCE CODE
+*.bat    text
+*.css    text
+*.html   text
+*.js     text
+*.json   text
+*.sh     text
+*.ts     text
+
+## DOCUMENTATION
+*.md         text
+*.txt        text
+AUTHORS      text
+CHANGELOG    text
+CHANGES      text
+CONTRIBUTING text
+COPYING      text
+INSTALL      text
+license      text
+LICENSE      text
+NEWS         text
+readme       text
+*README*     text
+TODO         text
+
+## TEMPLATES
+*.dot        text
+*.ejs        text
+*.haml       text
+*.handlebars text
+*.hbs        text
+*.hbt        text
+*.jade       text
+*.latte      text
+*.mustache   text
+*.phtml      text
+*.tmpl       text
+
+## LINTERS
+.eslintrc     text
+
+## CONFIGS
+*.bowerrc      text
+*.cnf          text
+*.conf         text
+*.config       text
+.editorconfig  text
+.gitattributes text
+.gitconfig     text
+.gitignore     text
+.htaccess      text
+*.npmignore    text
+*.yaml         text
+*.yml          text
+Makefile       text
+makefile       text
+
+## GRAPHICS
+*.bmp  binary
+*.gif  binary
+*.ico  binary
+*.jpg  binary
+*.jpeg binary
+*.pdf  binary
+*.png  binary
+*.svg  text
+
+## ARCHIVES
+*.7z  binary
+*.gz  binary
+*.rar binary
+*.tar binary
+*.zip binary
+
+## FONTS
+*.ttf   binary
+*.eot   binary
+*.otf   binary
+*.woff  binary
+*.woff2 binary
