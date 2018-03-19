@@ -1,0 +1,18 @@
+{
+  "name": "certisign-server",
+  "version": "0.1.0",
+  "description": "Certisign Server",
+  "author": "Rodolfo Mota Martins <rodolfomotamartins@gmail.com>",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "6.9.1",
+    "npm": "3.10.6"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "firebase-admin": "^5.11.0",
+    "nedb": "^1.8.0"
+  }
+}
