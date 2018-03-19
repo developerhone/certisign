@@ -24,10 +24,10 @@ server.on('request', function(req, res) {
     if (url === '/') {
 
         res.writeHead(200);
-        return res.end(fs.readFileSync('view/index.html'))       
+        return res.end(fs.readFileSync('view/index.html'))
 
     }
-    
+
     if (url === '/cadastro') {
 
         // banco._insert(usuario, res);
@@ -50,8 +50,8 @@ server.on('request', function(req, res) {
 
 });
 
-server.listen(3030, 'localhost', function () {
+server.listen(3000, 'localhost', function () {
   console.log('--- O servidor arrancou –--');
 });
 
-console.log('Servidor iniciado em localhost:3030. Ctrl+C para encerrar…');
+console.log('Servidor iniciado em localhost:3000. Ctrl+C para encerrar…');
