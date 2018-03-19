@@ -1,8 +1,10 @@
 const http    = require('http');
 const fs      = require('fs');
+// The Firebase Admin SDK to access the Firebase Realtime Database.
 const admin   = require('firebase-admin');
-// const banco   = require('./app/core/banco.js');
-const server  = http.createServer();
+
+// The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
+const functions = require('firebase-functions');
 
 var config = {
     apiKey: "AIzaSyA-vogzQVjd4aIf28jQmpyTZgHOBfePymM",
@@ -13,7 +15,7 @@ var config = {
     messagingSenderId: "917936955307"
 };
 
-admin.initializeApp(config);
+admin.initializeApp(functions.config().firebase);
 
 const db = admin.database();
 
@@ -32,16 +34,16 @@ server.on('request', function(req, res) {
 
         // banco._insert(usuario, res);
 
-        var ref = db.ref('assinantes/cpf');
+        var ref = db.ref('assinantes');
 
-        console.log(ref.orderByKey());
+        var cpfRef = ref.child("cpf");
+
+        cpfQuery.orderByKey().on('child_added', function(snap) {
+            console.log(snap.getKey(), snap.val());
+        });
 
         res.writeHead(200);
         return res.end('show');
-
-        ref.orderByKey().on("child_added", function(snapshot) {
-            console.log(snapshot.key);
-        });
 
     }
 
