@@ -2,8 +2,6 @@
 * text=auto
 
 ## AVOID MERGE CONFLICTS
-.env                                       merge=ours
-server.js                                  merge=ours
 .gitattributes                             merge=ours
 
 ## SOURCE CODE

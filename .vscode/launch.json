@@ -13,7 +13,7 @@
                 "run-script",
                 "debug"
             ],
-            "port": 3000
+            "port": 5000
         },
         {
             "type": "node",

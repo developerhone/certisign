@@ -16,15 +16,17 @@ git clone https://github.com/developerhone/certisign
 
 Install project packages
 ```
-cd core-server
+cd certisign
 npm install
+
+npm install -g firebase-tools
+
+firebase login
+
+firebase init
+
+firebase deploy
+
 ```
-
-### Development environment variables
-
-### NPM tasks
-
-Several tasks are scripted to make things easier to dev team. In this project, you will find:
-  * ```npm start```                  : this task is only used on AWS EC2 machine.
 
 Copyright 2018 HONE

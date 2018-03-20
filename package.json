@@ -12,8 +12,6 @@
     "npm": "3.10.6"
   },
   "devDependencies": {},
-  "dependencies": {
-    "dotenv": "^5.0.1"
-  },
+  "dependencies": {},
   "private": true
 }
