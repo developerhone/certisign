@@ -1,9 +1,9 @@
 # Logs
 logs/
-npm-debug.log
 npm-debug.log.*
 
 # Dependency directory
+functions/
 node_modules/
 
 # Mac files
