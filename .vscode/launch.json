@@ -7,11 +7,10 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch via NPM",
-            "runtimeExecutable": "npm",
+            "name": "Launch via FIREBASE",
+            "runtimeExecutable": "firebase",
             "runtimeArgs": [
-                "run-script",
-                "debug"
+                "server"
             ],
             "port": 5000
         },
