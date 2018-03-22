@@ -9,9 +9,51 @@
   "functions": {
     "predeploy": [
       "npm --prefix \"$RESOURCE_DIR\" run lint"
-    ]
+    ],
+    "source": "functions"
   },
   "hosting": {
+    "headers": [
+      {
+        "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=7200"
+          }
+        ]
+      },
+      {
+        "source": "404.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=300"
+          }
+        ]
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/foo",
+        "destination": "/bar",
+        "type": 301
+      },
+      {
+        "source": "/firebase/*",
+        "destination": "https://firebase.google.com",
+        "type": 302
+      }
+    ],
     "public": "public",
     "ignore": [
       "firebase.json",
@@ -19,6 +61,10 @@
       "**/node_modules/**"
     ],
     "rewrites": [
+      {
+        "source": "/assinantes/**",
+        "function": "bigben"
+      },
       {
         "source": "**",
         "destination": "/index.html"

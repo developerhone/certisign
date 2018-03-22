@@ -5,13 +5,11 @@
   "main": "server.js",
   "author": "Rodolfo Mota Martins <rodolfomotamartins@gmail.com>",
   "scripts": {
-    "start": "node server.js"
+    "start": "firebase serve"
   },
   "engines": {
     "node": "6.9.1",
     "npm": "3.10.6"
   },
-  "devDependencies": {},
-  "dependencies": {},
   "private": true
 }

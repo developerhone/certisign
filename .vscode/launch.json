@@ -7,18 +7,10 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch via FIREBASE",
-            "runtimeExecutable": "firebase",
-            "runtimeArgs": [
-                "server"
-            ],
-            "port": 5000
+            "name": "Launch WebApi",
+            "program": "${workspaceRoot}/server.js",
+            "console": "internalConsole",
+            "outputCapture": "std"
         },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceRoot}/server.js"
-        }
     ]
 }
