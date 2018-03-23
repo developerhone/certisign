@@ -62,8 +62,8 @@
     ],
     "rewrites": [
       {
-        "source": "/assinantes/**",
-        "function": "bigben"
+        "source": "/addMessage/**",
+        "function": "addMessage"
       },
       {
         "source": "**",
