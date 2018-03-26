@@ -1,0 +1,32 @@
+[debug] [2018-03-25T23:57:05.697Z] ----------------------------------------------------------------------
+[debug] [2018-03-25T23:57:05.699Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\rodol\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-03-25T23:57:05.699Z] CLI Version:   3.17.7
+[debug] [2018-03-25T23:57:05.700Z] Platform:      win32
+[debug] [2018-03-25T23:57:05.700Z] Node Version:  v8.9.4
+[debug] [2018-03-25T23:57:05.700Z] Time:          Sun Mar 25 2018 20:57:05 GMT-0300 (Hora oficial do Brasil)
+[debug] [2018-03-25T23:57:05.700Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-03-25T23:57:05.719Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-03-25T23:57:05.720Z] > authorizing via signed-in user
+[debug] [2018-03-25T23:57:05.723Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/certisign-c342c  
+  
+ Sun Mar 25 2018 20:57:05 GMT-0300 (Hora oficial do Brasil)
+[debug] [2018-03-25T23:57:06.775Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-25T23:57:06.776Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/certisign-c342c/tokens  
+  
+ Sun Mar 25 2018 20:57:06 GMT-0300 (Hora oficial do Brasil)
+[debug] [2018-03-25T23:57:07.648Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-25T23:57:07.649Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/certisign-c342c  
+  
+ Sun Mar 25 2018 20:57:07 GMT-0300 (Hora oficial do Brasil)
+[debug] [2018-03-25T23:57:08.817Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\rodol\projetosGitHub\certisign'...
+[info] 
+[debug] [2018-03-25T23:57:08.825Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/917936955307/clients/_:getWebAppConfig  
+  
+ Sun Mar 25 2018 20:57:08 GMT-0300 (Hora oficial do Brasil)
+[debug] [2018-03-25T23:57:09.674Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
