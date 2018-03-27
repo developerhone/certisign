@@ -3,7 +3,7 @@ logs/
 npm-debug.log.*
 
 # Dependency directory
-functions/
+functions/node_modules/
 node_modules/
 
 # Mac files

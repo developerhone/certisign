@@ -62,15 +62,15 @@
     ],
     "rewrites": [
       {
-        "source": "/addMessage/**",
-        "function": "addMessage"
+        "source": "/addAssinantes",
+        "function": "addAssinantes"
       },
       {
-        "source": "**",
+        "source": "",
         "destination": "/index.html"
       }
     ]
-  },
+  },  
   "storage": {
     "rules": "storage.rules"
   }
