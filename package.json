@@ -11,5 +11,6 @@
     "node": "6.9.1",
     "npm": "3.10.6"
   },
-  "private": true
+  "private": true,
+  "dependencies": {}
 }
