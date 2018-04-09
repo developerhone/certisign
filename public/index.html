@@ -1,65 +1,449 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
+<html ng-app="honeApp">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/4.12.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/4.12.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/4.12.0/firebase-database.js"></script>
-    <script defer src="/__/firebase/4.12.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/4.12.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+    <!-- jquey -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-messages.min.js"></script>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+    <!-- sortable jquery -->
+    <script src="https://rawgithub.com/angular-ui/ui-sortable/master/src/sortable.js"></script>
+
+</head>
+<script>
+angular.module('honeApp', ['ngMaterial', 'ui.sortable'])
+    .config(function($mdThemingProvider, $httpProvider) {
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+        $mdThemingProvider.theme('default')
+            .primaryPalette('blue')
+            .accentPalette('orange');
+    })
+    .controller('HoneController', function($http) {
+
+        $http({
+                url: 'http://localhost:5000/certisign-c342c/us-central1/getAssinantes',
+                method: "GET"
+            })
+            .then(function(response) {
+                console.log(response);
+            },
+            function(err) {
+                console.log(err);
+            });
+
+        var hone = this;
+
+        hone.selectedIndex = 0;
+
+        hone.subscribers = [];
+        hone.alert = null;
+
+        hone.btnDisabled = true;
+        hone.btnLabel = 'Assinar';
+
+        function isNumeric(string){
+            var numeric;
+
+            if (!string)
+                return string;
+
+            numeric = string.replace(/[^0-9]/g, '');
+
+            return parseInt(numeric, 10);
         }
-      });
-    </script>
-  </body>
+
+        hone.sortableOptions = {
+            stop: function(e, ui) {
+                for (i=0; i < hone.subscribers.length; i++) {
+                    hone.subscribers[i].step = i + 1;
+                }
+            }
+        };
+
+        hone.subscribersDelete = function(item) {
+            var index = hone.subscribers.indexOf(item);
+            hone.subscribers.splice(index, 1);
+        }
+
+        hone.subscribersSave = function(isValid, form) {
+            var formData = hone.subscriber;
+
+            if (isValid) {
+                return false;
+            }
+            hone.isLoading  = true;
+            hone.successMsg = false;
+            hone.btnLabel = 'Assinar';
+            hone.subscriber = {};
+            formData.title  = 'Signer';
+            formData.step   = hone.subscribers.length + 1;
+            formData.individualIdentificationCode = isNumeric(formData.individualIdentificationCode);
+
+            var assinante = {
+                'name' : formData.name,
+                'email' : formData.email,
+                'individualIdentificationCode' : formData.individualIdentificationCode
+            }
+
+            var headers = {
+                'Content-Type': 'application/json',
+                'TOKEN': 'SzLpmH7kGrcrL3POnGhR',
+                'CODE': '2dT3hkndXNOUTUidiU2Y',
+            };
+
+            $http({
+                url: 'http://localhost:5000/certisign-c342c/us-central1/app/hello',
+                method: "POST",
+                headers: headers,
+                data: JSON.stringify(assinante)
+            })
+            .then(function(response) {
+                hone.selectedIndex = 1;
+                hone.isLoading = false;
+                if (hone.subscribers.length > 0) {
+                    hone.btnDisabled = false;
+                }
+            },
+            function(err) {
+                hone.alert = err.data.message;
+            });
+
+        };
+
+        function onErrorUpload(err) {
+            hone.btnDisabled = false;
+            alert('Erro em fazer o upload do documento');
+        }
+
+        function onSuccessUpload(success) {
+            hone.btnLabel = 'Processando sua assinatura...';
+            var headers = {
+                'TOKEN': 'SzLpmH7kGrcrL3POnGhR',
+                'CODE': '2dT3hkndXNOUTUidiU2Y',
+                'Content-Type': 'application/json'
+            };
+
+            $http({
+                url: 'https://api-sbx.portaldeassinaturas.com.br/api/v2/document/upload',
+                method: 'POST',
+                headers: headers,
+                data: JSON.stringify(success)
+            })
+            .then(function(successUpload) {
+                var upload = JSON.parse(JSON.stringify(successUpload));
+                var payload = {
+                    "document": {
+                        "name": success.fileName,
+                        "upload": {
+                            "id": upload.data.uploadId,
+                            "name": success.fileName
+                        }
+                    },
+                    "sender": hone.subscribers[0],
+                    "signers": hone.subscribers
+                }
+
+                $http({
+                    url: 'https://api-sbx.portaldeassinaturas.com.br/api/v2/document/create',
+                    method: "POST",
+                    headers: headers,
+                    data: payload
+                })
+                .then(function(response) {
+                    var certsignRef;
+                    hone.btnLabel = 'Concluído com sucesso.';
+                    hone.alert = null;
+                    hone.successHref = response.data.signUrl;
+                    hone.successMsg = true;
+                    for (var i = 0; i < hone.subscribers.length; i ++) {
+                        // hone.subscribers[i].individualIdentificationCode;
+                    }
+                    hone.subscribers = [];
+                    // if (hone.subscribers.length === 1)
+                    //     hone.CertisignIntegration(response.data.signUrl)
+                },
+                function(err) {
+                    hone.btnLabel = 'Tentar novamente';
+                    hone.btnDisabled = false;
+                    hone.alert = err.data.message;
+                });
+            },
+            function(err) {
+                hone.btnDisabled = false;
+                hone.btnLabel = 'Tentar novamente';
+                hone.alert = err.data.message;
+            });
+
+        }
+
+        hone.makePDF = function() {
+            hone.alert = null;
+            hone.btnDisabled = true;
+            hone.btnLabel = 'Processando...';
+            google.script.run
+                .withSuccessHandler(onSuccessUpload)
+                .withFailureHandler(onErrorUpload)
+                .makePDF()
+        };
+
+    });
+
+function fMasc(objeto,mascara) {
+    obj=objeto
+    masc=mascara
+    setTimeout("fMascEx()",1)
+}
+
+function fMascEx() {
+    obj.value=masc(obj.value)
+}
+
+function mCPF(cpf){
+    cpf=cpf.replace(/\D/g,"")
+    cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+    cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+    cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+    return cpf
+}
+
+</script>
+<style>
+#sortable {
+    list-style-type: none;
+    margin: 0 0 30px;
+    padding: 0;
+    width: 100%;
+}
+
+.ui-state-highlight {
+    background: #F2F2F2;
+    border-color: #F2F2F2;
+}
+
+#sortable li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+}
+
+.ui-state-default {
+    border: 0;
+    background: #FFFFFF;
+}
+
+li {
+    height: 2.5em;
+    line-height: 1.2em;
+}
+
+.ui-item-text span {
+    padding: 10px;
+}
+
+.ui-item-text h3 {
+    font-size: 14px;
+}
+
+.ui-item-text h4 {
+    font-size: 12px;
+}
+
+.ui-item-text p {
+    font-size: 10px;
+}
+
+.div-form input {
+    width: 100%;
+}
+
+.div-form div {
+    margin: 10px 0;
+}
+
+.ul-list li {
+    text-align: left;
+}
+
+.alertMsg {
+    color: red;
+}
+
+md-input-container {
+    margin: 0 5px !important;
+    padding: 0 !important;
+}
+
+md-content {
+    background-color: #FFFFFF !important;
+}
+
+.md-subheader {
+    background-color: #FFFFFF !important;
+}
+
+body {
+    background-color: #FFFFFF !important;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+</style>
+
+<body>
+
+    <div ng-controller="HoneController as hone" >
+
+        <md-content flex layout-padding>
+
+            <div style="text-align: center;"><img alt="Hone" height="51" src="https://hone.com.br/wp-content/uploads/2017/10/big-logo.png" width="180" /></div>
+
+            <md-tabs md-dynamic-height md-border-bottom md-center-tabs md-selected="hone.selectedIndex" md-autoselect>
+
+                <md-tab label="Formulário de Assinates">
+
+                    <form name="honeForm" ng-submit="hone.subscribersSave(userForm.$valid, honeForm)" novalidate ng-if="hone.selectedIndex === 0" >
+
+                        <div layout="row" layout-sm="column" layout-align="space-around" ng-if="hone.isLoading">
+                            <md-progress-circular md-mode="indeterminate" ></md-progress-circular>
+                        </div>
+
+                        <md-content layout-padding layout="row" layout-xs="column" ng-cloak class="md-inline-form" style="padding-top: 30px;">
+
+                            <md-input-container flex>
+                                <label>Nome</label>
+                                <input maxlength="50" minlength="3" required name="name" ng-model="hone.subscriber.name" >
+                                <div ng-messages="honeForm.name.$error" role="alert" ng-show="honeForm.name.$dirty">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength']">
+                                        Seu nome deve ter entre 3 e 50 caracteres.
+                                    </div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>Email</label>
+                                <input required type="email" name="email" ng-model="hone.subscriber.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                                <div ng-messages="honeForm.email.$error" role="alert" ng-show="honeForm.email.$dirty">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Seu e-mail deve ter entre 10 e 100 caracteres e parecer um endereço de e-mail.
+                                    </div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container flex>
+                                <label>CPF</label>
+                                <input maxlength="14" required name="individualIdentificationCode" ng-model="hone.subscriber.individualIdentificationCode" onkeydown="javascript: fMasc( this, mCPF );">
+                                <div ng-messages="honeForm.individualIdentificationCode.$error" role="alert" ng-show="honeForm.individualIdentificationCode.$dirty">
+                                    <div ng-message-exp="['required', 'maxlength']">
+                                        Seu CPF é campo obrigatório.
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                        </md-content>
+                        <section layout="row" layout-sm="column" layout-align="center end" layout-wrap>
+                            <md-button class="md-raised md-primary" type="submit" ng-disabled="honeForm.$invalid">Salvar</md-button>
+                        </section>
+
+                    </form>
+                </md-tab>
+                <md-tab label="Lista de Assinantes">
+
+                    <md-content ng-if="hone.subscribers.length === 0 && !hone.successMsg" style="padding-top: 30px;">
+                        <md-subheader class="md-no-sticky" style="width: 100%; text-align:center"> Nenhum assinante salvo.</md-subheader>
+                    </md-content>
+
+                    <md-content ng-if="hone.subscribers.length > 0" style="padding-top: 30px;">
+
+                        <ul id="sortable" ui-sortable="hone.sortableOptions" ng-model="hone.subscribers">
+                            <li class="ui-state-default" ng-repeat="item in hone.subscribers" style="cursor:move;">
+                                <div layout="row" layout-wrap class="ui-item-text" >
+                                    <md-button class="md-icon-button md-primary" aria-label="Excluir" ng-click="hone.subscribersDelete(item)" >
+                                        <i class="material-icons">delete</i>
+                                    </md-button>
+                                    <span >
+                                        {{ item.step }}
+                                    </span>
+                                    <span flex="30">
+                                        {{ item.name }}
+                                    </span>
+                                    <span >
+                                        {{ item.email }}
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div flex layout-padding ng-if="hone.alert" layout="row" layout-sm="column" layout-align="center end" class="alertMsg">{{hone.alert}}</div>
+                        <section layout="row" layout-sm="column" layout-align="center end" layout-wrap>
+                            <md-button class="md-raised md-primary" ng-disabled="hone.btnDisabled" ng-click="hone.makePDF()">{{hone.btnLabel}}</md-button>
+                        </section>
+
+                    </md-content>
+
+                    <md-content ng-if="hone.subscribers.length === 0 && hone.successMsg" style="padding-top: 30px;">
+                        <div flex layout-padding layout="row" layout-sm="column" layout-align="center end" ><a href="{{hone.successHref}}" target="_blank" >Assinar Documento no site da CERTISIGN</a></div>
+                    </md-content>
+
+                </md-tab>
+
+                <!-- <md-tab label="Portal de Assinatura">
+
+                    <iframe src="http://sandbox.portaldeassinaturas.com.br/Assinatura/AssinarFrame/94633?chave=0117A59B6FBAAF81" frameborder="0" width="100%" height="400px"></iframe>
+
+                </md-tab> -->
+
+            </md-tabs>
+
+        </md-content>
+
+    </div>
+
+</body>
 </html>

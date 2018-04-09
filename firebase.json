@@ -20,6 +20,14 @@
           {
             "key": "Access-Control-Allow-Origin",
             "value": "*"
+          },
+          {
+            "key": "Access-Control-Allow-Headers",
+            "value": "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With"
+          },
+          {
+            "key": "Access-Control-Allow-Methods",
+            "value": "GET, PUT, POST, OPTIONS"
           }
         ]
       }

@@ -1,0 +1,42 @@
+2018-04-09T13:27:30.144Z - info: User function triggered, starting execution
+2018-04-09T13:27:31.248Z - error: Mon, 09 Apr 2018 13:27:31 GMT express deprecated res.send(status, body): Use res.status(status).send(body) instead at index.js:50:25
+2018-04-09T13:27:31.252Z - info: Execution took 1108 ms, user function completed successfully
+2018-04-09T13:27:33.249Z - info: User function triggered, starting execution
+2018-04-09T13:27:33.417Z - info: Execution took 168 ms, user function completed successfully
+2018-04-09T13:27:44.075Z - info: User function triggered, starting execution
+2018-04-09T13:27:44.253Z - info: Execution took 175 ms, user function completed successfully
+2018-04-09T13:28:33.725Z - info: User function triggered, starting execution
+2018-04-09T13:28:33.726Z - info: Function crashed
+2018-04-09T13:28:33.727Z - info: Error: Illegal argument undefined
+    at module.exports (C:\projetoGitHub\certisign\functions\node_modules\md5\md5.js:152:13)
+    at exports.addAssinantes.functions.https.onRequest (C:\projetoGitHub\certisign\functions\index.js:27:39)
+    at cloudFunction (C:\projetoGitHub\certisign\functions\node_modules\firebase-functions\lib\providers\https.js:37:41)
+    at app.use (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@google-cloud\functions-emulator\src\supervisor\worker.js:142:11)
+    at Layer.handle [as handle_request] (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\express\lib\router\index.js:317:13)
+    at C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\express\lib\router\index.js:335:12)
+    at next (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\express\lib\router\index.js:275:10)
+    at app.use (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@google-cloud\functions-emulator\src\supervisor\worker.js:114:7)
+2018-04-09T13:28:33.731Z - info: Execution took 7 ms, user function completed successfully
+2018-04-09T13:28:54.273Z - info: Worker for addAssinantes closed due to file changes.
+2018-04-09T13:28:54.323Z - error: Function worker killed by signal: SIGTERM
+2018-04-09T13:38:08.171Z - info: Worker for addDownload closed due to file changes.
+2018-04-09T13:38:08.174Z - info: Worker for addAssinantes closed due to file changes.
+2018-04-09T13:38:32.636Z - info: User function triggered, starting execution
+2018-04-09T13:38:32.809Z - error: Mon, 09 Apr 2018 13:38:32 GMT express deprecated res.send(status, body): Use res.status(status).send(body) instead at index.js:33:25
+2018-04-09T13:38:32.814Z - info: Execution took 178 ms, user function completed successfully
+2018-04-09T13:38:39.687Z - info: User function triggered, starting execution
+2018-04-09T13:38:39.688Z - info: Function crashed
+2018-04-09T13:38:39.689Z - info: Error: Illegal argument undefined
+    at module.exports (C:\projetoGitHub\certisign\functions\node_modules\md5\md5.js:152:13)
+    at exports.addAssinantes.functions.https.onRequest (C:\projetoGitHub\certisign\functions\index.js:14:39)
+    at cloudFunction (C:\projetoGitHub\certisign\functions\node_modules\firebase-functions\lib\providers\https.js:37:41)
+    at app.use (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@google-cloud\functions-emulator\src\supervisor\worker.js:142:11)
+    at Layer.handle [as handle_request] (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\express\lib\router\index.js:317:13)
+    at C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\express\lib\router\index.js:335:12)
+    at next (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\express\lib\router\index.js:275:10)
+    at app.use (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@google-cloud\functions-emulator\src\supervisor\worker.js:114:7)
+2018-04-09T13:38:39.693Z - info: Execution took 5 ms, user function completed successfully

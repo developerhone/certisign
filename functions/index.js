@@ -6,14 +6,28 @@ admin.initializeApp(functions.config().firebase);
 
 const db = admin.database();
 
+const express = require('express');
+const cookieParser = require('cookie-parser')();
+const cors = require('cors')({origin: true});
+const app = express();
+
+app.use(cors);
+app.use(cookieParser);
+
+app.post('/hello', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    return db.ref('assinantes').child(md5(req.body.email)).set(req.body, (err) => {
+        return res.send(200, { id : md5(req.body.email), message: err ? err : 'Salvo com sucesso.' });
+    });
+});
+
+exports.app = functions.https.onRequest(app);
+
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
 exports.addAssinantes = functions.https.onRequest((request, response) => {
-
-    response.header("Access-Control-Allow-Origin", "*");
-    response.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
-    response.header("Access-Control-Allow-Methods", "GET, PUT, POST");
 
     return db.ref('assinantes').child(md5(request.body.email)).set(request.body, (err) => {
         return response.send(200, { id : md5(request.body.email), message: err ? err : 'Salvo com sucesso.' });
@@ -22,10 +36,6 @@ exports.addAssinantes = functions.https.onRequest((request, response) => {
 });
 
 exports.getAssinantes = functions.https.onRequest((request, response) => {
-
-    response.header("Access-Control-Allow-Origin", "*");
-    response.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
-    response.header("Access-Control-Allow-Methods", "GET, PUT, POST");
 
     var getAssinantes = [];
 
@@ -45,10 +55,6 @@ exports.getAssinantes = functions.https.onRequest((request, response) => {
 
 
 exports.addDownload = functions.https.onRequest((request, response) => {
-
-    response.header("Access-Control-Allow-Origin", "*");
-    response.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
-    response.header("Access-Control-Allow-Methods", "GET, PUT, POST");
 
     return db.ref('assinantes').child(md5(request.body.email)).set(request.body, (err) => {
         return response.send(200, { id : md5(request.body.email), message: err ? err : 'Salvo com sucesso.' });
