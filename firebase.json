@@ -15,29 +15,11 @@
   "hosting": {
     "headers": [
       {
-        "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+        "source": "**",
         "headers": [
           {
             "key": "Access-Control-Allow-Origin",
             "value": "*"
-          }
-        ]
-      },
-      {
-        "source": "**/*.@(jpg|jpeg|gif|png)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=7200"
-          }
-        ]
-      },
-      {
-        "source": "404.html",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=300"
           }
         ]
       }
@@ -66,11 +48,19 @@
         "function": "addAssinantes"
       },
       {
+        "source": "/getAssinantes",
+        "function": "getAssinantes"
+      },
+      {
+        "source": "/addDownload",
+        "function": "addDownload"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
     ]
-  },  
+  },
   "storage": {
     "rules": "storage.rules"
   }
