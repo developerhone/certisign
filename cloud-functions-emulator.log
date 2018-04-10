@@ -40,3 +40,196 @@
     at next (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\express\lib\router\index.js:275:10)
     at app.use (C:\Users\rodolfo.martins.PLING\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@google-cloud\functions-emulator\src\supervisor\worker.js:114:7)
 2018-04-09T13:38:39.693Z - info: Execution took 5 ms, user function completed successfully
+2018-04-10T01:07:25.690Z - info: User function triggered, starting execution
+2018-04-10T01:07:25.693Z - info: Function crashed
+Error: Illegal argument undefined
+    at module.exports (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/md5/md5.js:152:13)
+    at exports.addAssinantes.functions.https.onRequest (/Users/rodolfomartins/Documents/GitHub/certisign/functions/index.js:14:39)
+    at cloudFunction (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/firebase-functions/lib/providers/https.js:37:41)
+    at app.use (/usr/local/lib/node_modules/firebase-tools/node_modules/@google-cloud/functions-emulator/src/supervisor/worker.js:142:11)
+    at Layer.handle [as handle_request] (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/router/index.js:317:13)
+    at /usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/router/index.js:335:12)
+    at next (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/router/index.js:275:10)
+    at app.use (/usr/local/lib/node_modules/firebase-tools/node_modules/@google-cloud/functions-emulator/src/supervisor/worker.js:114:7)
+2018-04-10T01:07:25.699Z - info: Execution took 8 ms, user function completed successfully
+2018-04-10T01:08:13.870Z - info: Worker for addAssinantes closed due to file changes.
+2018-04-10T01:18:03.097Z - info: User function triggered, starting execution
+2018-04-10T01:18:03.107Z - info: Execution took 10 ms, user function completed successfully
+2018-04-10T01:18:10.393Z - info: User function triggered, starting execution
+2018-04-10T01:18:10.586Z - error: [2018-04-10T01:18:10.585Z]  @firebase/database: FIREBASE WARNING: Exception was thrown by user callback. ReferenceError: response is not defined
+    at db.ref.once (/Users/rodolfomartins/Documents/GitHub/certisign/functions/index.js:39:9)
+    at onceCallback (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/api/Query.js:244:51)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventRegistration.js:65:22
+    at Object.exports.exceptionGuard (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:536:9)
+    at EventList.raise (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:158:24)
+    at EventQueue.raiseQueuedEventsMatchingPredicate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:111:41)
+    at EventQueue.raiseEventsForChangedPath (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:95:14)
+    at Object.onComplete (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/Repo.js:116:39)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:180:32
+    at PersistentConnection.onDataMessage_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:435:17) 
+2018-04-10T01:18:10.586Z - error: /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:547
+            throw e;
+            ^
+
+ReferenceError: response is not defined
+    at db.ref.once (/Users/rodolfomartins/Documents/GitHub/certisign/functions/index.js:39:9)
+    at onceCallback (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/api/Query.js:244:51)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventRegistration.js:65:22
+    at Object.exports.exceptionGuard (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:536:9)
+    at EventList.raise (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:158:24)
+    at EventQueue.raiseQueuedEventsMatchingPredicate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:111:41)
+    at EventQueue.raiseEventsForChangedPath (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:95:14)
+    at Object.onComplete (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/Repo.js:116:39)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:180:32
+    at PersistentConnection.onDataMessage_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:435:17)
+2018-04-10T01:18:10.593Z - info: Execution took 203 ms, finished with status: 'crash'
+2018-04-10T01:18:10.612Z - error: Function worker crashed with exit code: 1
+2018-04-10T01:22:09.067Z - info: User function triggered, starting execution
+2018-04-10T01:22:09.263Z - error: [2018-04-10T01:22:09.263Z]  @firebase/database: FIREBASE WARNING: Exception was thrown by user callback. ReferenceError: response is not defined
+    at db.ref.once (/Users/rodolfomartins/Documents/GitHub/certisign/functions/index.js:39:9)
+    at onceCallback (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/api/Query.js:244:51)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventRegistration.js:65:22
+    at Object.exports.exceptionGuard (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:536:9)
+    at EventList.raise (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:158:24)
+    at EventQueue.raiseQueuedEventsMatchingPredicate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:111:41)
+    at EventQueue.raiseEventsForChangedPath (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:95:14)
+    at Object.onComplete (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/Repo.js:116:39)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:180:32
+    at PersistentConnection.onDataMessage_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:435:17) 
+2018-04-10T01:22:09.264Z - error: /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:547
+            throw e;
+            ^
+
+ReferenceError: response is not defined
+    at db.ref.once (/Users/rodolfomartins/Documents/GitHub/certisign/functions/index.js:39:9)
+    at onceCallback (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/api/Query.js:244:51)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventRegistration.js:65:22
+    at Object.exports.exceptionGuard (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:536:9)
+    at EventList.raise (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:158:24)
+    at EventQueue.raiseQueuedEventsMatchingPredicate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:111:41)
+    at EventQueue.raiseEventsForChangedPath (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:95:14)
+    at Object.onComplete (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/Repo.js:116:39)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:180:32
+    at PersistentConnection.onDataMessage_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:435:17)
+2018-04-10T01:22:09.270Z - info: Execution took 213 ms, finished with status: 'crash'
+2018-04-10T01:22:09.286Z - error: Function worker crashed with exit code: 1
+2018-04-10T01:22:43.021Z - info: User function triggered, starting execution
+2018-04-10T01:22:43.028Z - info: Execution took 8 ms, user function completed successfully
+2018-04-10T01:22:43.048Z - info: User function triggered, starting execution
+2018-04-10T01:22:44.575Z - error: Tue, 10 Apr 2018 01:22:44 GMT express deprecated res.send(status, body): Use res.status(status).send(body) instead at index.js:21:20
+2018-04-10T01:22:44.579Z - info: Execution took 1530 ms, user function completed successfully
+2018-04-10T01:23:38.228Z - info: User function triggered, starting execution
+2018-04-10T01:23:38.230Z - info: Execution took 1 ms, user function completed successfully
+2018-04-10T01:23:38.256Z - info: User function triggered, starting execution
+2018-04-10T01:23:38.442Z - info: Execution took 185 ms, user function completed successfully
+2018-04-10T01:26:38.103Z - info: User function triggered, starting execution
+2018-04-10T01:26:38.105Z - info: Execution took 1 ms, user function completed successfully
+2018-04-10T01:26:38.134Z - info: User function triggered, starting execution
+2018-04-10T01:26:38.314Z - info: Execution took 179 ms, user function completed successfully
+2018-04-10T01:26:45.113Z - info: User function triggered, starting execution
+2018-04-10T01:26:45.114Z - info: Execution took 0 ms, user function completed successfully
+2018-04-10T01:26:45.143Z - info: User function triggered, starting execution
+2018-04-10T01:26:45.328Z - info: Execution took 183 ms, user function completed successfully
+2018-04-10T01:35:59.005Z - error: Function worker killed by signal: SIGTERM
+2018-04-10T02:47:58.636Z - info: User function triggered, starting execution
+2018-04-10T02:47:58.644Z - info: Execution took 8 ms, user function completed successfully
+2018-04-10T02:47:58.680Z - info: User function triggered, starting execution
+2018-04-10T02:47:58.878Z - error: Tue, 10 Apr 2018 02:47:58 GMT express deprecated res.send(status, body): Use res.status(status).send(body) instead at index.js:25:20
+2018-04-10T02:47:58.882Z - info: Execution took 201 ms, user function completed successfully
+2018-04-10T02:52:52.377Z - info: User function triggered, starting execution
+2018-04-10T02:52:52.575Z - error: [2018-04-10T02:52:52.574Z]  @firebase/database: FIREBASE WARNING: Exception was thrown by user callback. ReferenceError: response is not defined
+    at db.ref.once (/Users/rodolfomartins/Documents/GitHub/certisign/functions/index.js:49:9)
+    at onceCallback (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/api/Query.js:244:51)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventRegistration.js:65:22
+    at Object.exports.exceptionGuard (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:536:9)
+    at EventList.raise (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:158:24)
+    at EventQueue.raiseQueuedEventsMatchingPredicate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:111:41)
+    at EventQueue.raiseEventsForChangedPath (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:95:14)
+    at Repo.onDataUpdate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/Repo.js:200:26)
+    at PersistentConnection.onDataPush_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:449:18)
+    at PersistentConnection.onDataMessage_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:443:18) 
+2018-04-10T02:52:52.575Z - error: /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:547
+            throw e;
+            ^
+
+ReferenceError: response is not defined
+    at db.ref.once (/Users/rodolfomartins/Documents/GitHub/certisign/functions/index.js:49:9)
+    at onceCallback (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/api/Query.js:244:51)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventRegistration.js:65:22
+    at Object.exports.exceptionGuard (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:536:9)
+    at EventList.raise (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:158:24)
+    at EventQueue.raiseQueuedEventsMatchingPredicate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:111:41)
+    at EventQueue.raiseEventsForChangedPath (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:95:14)
+    at Repo.onDataUpdate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/Repo.js:200:26)
+    at PersistentConnection.onDataPush_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:449:18)
+    at PersistentConnection.onDataMessage_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:443:18)
+2018-04-10T02:52:52.582Z - info: Execution took 208 ms, finished with status: 'crash'
+2018-04-10T02:52:52.604Z - error: Function worker crashed with exit code: 1
+2018-04-10T02:53:51.686Z - info: User function triggered, starting execution
+2018-04-10T02:53:51.887Z - error: [2018-04-10T02:53:51.887Z]  @firebase/database: FIREBASE WARNING: Exception was thrown by user callback. ReferenceError: response is not defined
+    at db.ref.once (/Users/rodolfomartins/Documents/GitHub/certisign/functions/index.js:49:9)
+    at onceCallback (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/api/Query.js:244:51)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventRegistration.js:65:22
+    at Object.exports.exceptionGuard (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:536:9)
+    at EventList.raise (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:158:24)
+    at EventQueue.raiseQueuedEventsMatchingPredicate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:111:41)
+    at EventQueue.raiseEventsForChangedPath (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:95:14)
+    at Repo.onDataUpdate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/Repo.js:200:26)
+    at PersistentConnection.onDataPush_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:449:18)
+    at PersistentConnection.onDataMessage_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:443:18) 
+2018-04-10T02:53:51.888Z - error: /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:547
+            throw e;
+            ^
+
+ReferenceError: response is not defined
+    at db.ref.once (/Users/rodolfomartins/Documents/GitHub/certisign/functions/index.js:49:9)
+    at onceCallback (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/api/Query.js:244:51)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventRegistration.js:65:22
+    at Object.exports.exceptionGuard (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:536:9)
+    at EventList.raise (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:158:24)
+    at EventQueue.raiseQueuedEventsMatchingPredicate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:111:41)
+    at EventQueue.raiseEventsForChangedPath (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:95:14)
+    at Repo.onDataUpdate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/Repo.js:200:26)
+    at PersistentConnection.onDataPush_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:449:18)
+    at PersistentConnection.onDataMessage_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:443:18)
+2018-04-10T02:53:51.893Z - info: Execution took 221 ms, finished with status: 'crash'
+2018-04-10T02:53:51.911Z - error: Function worker crashed with exit code: 1
+2018-04-10T02:54:58.943Z - info: User function triggered, starting execution
+2018-04-10T02:54:58.951Z - info: Execution took 9 ms, user function completed successfully
+2018-04-10T02:54:58.972Z - info: User function triggered, starting execution
+2018-04-10T02:55:00.362Z - error: Tue, 10 Apr 2018 02:55:00 GMT express deprecated res.send(status, body): Use res.status(status).send(body) instead at index.js:25:20
+2018-04-10T02:55:00.366Z - info: Execution took 1394 ms, user function completed successfully
+2018-04-10T02:55:06.544Z - info: User function triggered, starting execution
+2018-04-10T02:55:06.738Z - error: [2018-04-10T02:55:06.738Z]  @firebase/database: FIREBASE WARNING: Exception was thrown by user callback. ReferenceError: response is not defined
+    at db.ref.once (/Users/rodolfomartins/Documents/GitHub/certisign/functions/index.js:49:9)
+    at onceCallback (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/api/Query.js:244:51)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventRegistration.js:65:22
+    at Object.exports.exceptionGuard (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:536:9)
+    at EventList.raise (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:158:24)
+    at EventQueue.raiseQueuedEventsMatchingPredicate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:111:41)
+    at EventQueue.raiseEventsForChangedPath (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:95:14)
+    at Repo.onDataUpdate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/Repo.js:200:26)
+    at PersistentConnection.onDataPush_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:449:18)
+    at PersistentConnection.onDataMessage_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:443:18) 
+2018-04-10T02:55:06.739Z - error: /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:547
+            throw e;
+            ^
+
+ReferenceError: response is not defined
+    at db.ref.once (/Users/rodolfomartins/Documents/GitHub/certisign/functions/index.js:49:9)
+    at onceCallback (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/api/Query.js:244:51)
+    at /Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventRegistration.js:65:22
+    at Object.exports.exceptionGuard (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/util/util.js:536:9)
+    at EventList.raise (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:158:24)
+    at EventQueue.raiseQueuedEventsMatchingPredicate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:111:41)
+    at EventQueue.raiseEventsForChangedPath (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/view/EventQueue.js:95:14)
+    at Repo.onDataUpdate_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/Repo.js:200:26)
+    at PersistentConnection.onDataPush_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:449:18)
+    at PersistentConnection.onDataMessage_ (/Users/rodolfomartins/Documents/GitHub/certisign/functions/node_modules/@firebase/database/dist/cjs/src/core/PersistentConnection.js:443:18)
+2018-04-10T02:55:06.745Z - info: Execution took 204 ms, finished with status: 'crash'
+2018-04-10T02:55:06.762Z - error: Function worker crashed with exit code: 1
+2018-04-10T02:57:02.306Z - info: User function triggered, starting execution
+2018-04-10T02:57:03.542Z - error: Tue, 10 Apr 2018 02:57:03 GMT express deprecated res.send(status, body): Use res.status(status).send(body) instead at index.js:49:20
+2018-04-10T02:57:03.546Z - info: Execution took 1240 ms, user function completed successfully

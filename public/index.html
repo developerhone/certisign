@@ -26,25 +26,11 @@
 <script>
 angular.module('honeApp', ['ngMaterial', 'ui.sortable'])
     .config(function($mdThemingProvider, $httpProvider) {
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
         $mdThemingProvider.theme('default')
             .primaryPalette('blue')
             .accentPalette('orange');
     })
     .controller('HoneController', function($http) {
-
-        $http({
-                url: 'http://localhost:5000/certisign-c342c/us-central1/getAssinantes',
-                method: "GET"
-            })
-            .then(function(response) {
-                console.log(response);
-            },
-            function(err) {
-                console.log(err);
-            });
-
         var hone = this;
 
         hone.selectedIndex = 0;
@@ -93,35 +79,34 @@ angular.module('honeApp', ['ngMaterial', 'ui.sortable'])
             formData.step   = hone.subscribers.length + 1;
             formData.individualIdentificationCode = isNumeric(formData.individualIdentificationCode);
 
-            var assinante = {
-                'name' : formData.name,
-                'email' : formData.email,
-                'individualIdentificationCode' : formData.individualIdentificationCode
-            }
-
             var headers = {
                 'Content-Type': 'application/json',
-                'TOKEN': 'SzLpmH7kGrcrL3POnGhR',
-                'CODE': '2dT3hkndXNOUTUidiU2Y',
             };
 
             $http({
-                url: 'http://localhost:5000/certisign-c342c/us-central1/app/hello',
+                url: 'https://us-central1-certisign-c342c.cloudfunctions.net/app/assinantes',
                 method: "POST",
                 headers: headers,
-                data: JSON.stringify(assinante)
-            })
-            .then(function(response) {
+                data: JSON.stringify(formData)
+            }).then(function(responde) {    
                 hone.selectedIndex = 1;
+                formData.id = responde.data.id;
+                var newFormData = true;
+                for (var i = 0; i < hone.subscribers.length; i ++) {
+                    if (hone.subscribers[i].id === formData.id)
+                        newFormData = false;
+                }
+                if (newFormData)
+                    hone.subscribers.push(formData);
                 hone.isLoading = false;
                 if (hone.subscribers.length > 0) {
                     hone.btnDisabled = false;
                 }
-            },
-            function(err) {
+            }, function(err) {
+                hone.isLoading = false;
+                hone.btnLabel = 'Tentar novamente';
                 hone.alert = err.data.message;
             });
-
         };
 
         function onErrorUpload(err) {
@@ -164,17 +149,31 @@ angular.module('honeApp', ['ngMaterial', 'ui.sortable'])
                     data: payload
                 })
                 .then(function(response) {
-                    var certsignRef;
-                    hone.btnLabel = 'Concluído com sucesso.';
-                    hone.alert = null;
-                    hone.successHref = response.data.signUrl;
-                    hone.successMsg = true;
                     for (var i = 0; i < hone.subscribers.length; i ++) {
-                        // hone.subscribers[i].individualIdentificationCode;
+                        hone.subscribers[i].certisignDocument = payload.document;
+                        hone.subscribers[i].certisignSender = response.data;
                     }
-                    hone.subscribers = [];
-                    // if (hone.subscribers.length === 1)
-                    //     hone.CertisignIntegration(response.data.signUrl)
+                    var formData  = {
+                        assinantes : hone.subscribers[i].certisignSender
+                    };
+
+                    $http({
+                        url: 'https://us-central1-certisign-c342c.cloudfunctions.net/app/assinantes',
+                        method: "POST",
+                        headers: headers,
+                        data: JSON.stringify(formData)
+                    }).then(function(responde) {
+                        var certsignRef;
+                        hone.btnLabel = 'Concluído com sucesso.';
+                        hone.alert = null;
+                        hone.successHref = response.data.signUrl;
+                        hone.successMsg = true;
+                        hone.subscribers = [];
+                    }, function(err) {
+                        hone.btnLabel = 'Tentar novamente';
+                        hone.btnDisabled = false;
+                        hone.alert = err.data.message;
+                    });
                 },
                 function(err) {
                     hone.btnLabel = 'Tentar novamente';
@@ -354,7 +353,7 @@ body {
                     <form name="honeForm" ng-submit="hone.subscribersSave(userForm.$valid, honeForm)" novalidate ng-if="hone.selectedIndex === 0" >
 
                         <div layout="row" layout-sm="column" layout-align="space-around" ng-if="hone.isLoading">
-                            <md-progress-circular md-mode="indeterminate" ></md-progress-circular>
+                            <md-progress-linear md-mode="indeterminate" ></md-progress-linear>
                         </div>
 
                         <md-content layout-padding layout="row" layout-xs="column" ng-cloak class="md-inline-form" style="padding-top: 30px;">

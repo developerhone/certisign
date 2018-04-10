@@ -52,8 +52,8 @@
     ],
     "rewrites": [
       {
-        "source": "/addAssinantes",
-        "function": "addAssinantes"
+        "source": "/app/assinantes",
+        "function": "assinantes"
       },
       {
         "source": "/getAssinantes",

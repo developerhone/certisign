@@ -14,28 +14,26 @@ const app = express();
 app.use(cors);
 app.use(cookieParser);
 
-app.post('/hello', (req, res) => {
+app.post('/assinantes', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
 
-    return db.ref('assinantes').child(md5(req.body.email)).set(req.body, (err) => {
-        return res.send(200, { id : md5(req.body.email), message: err ? err : 'Salvo com sucesso.' });
+    var id = md5(req.body.email + req.body.email);
+
+    req.body.date_update = new Date();
+
+    return db.ref('assinantes').child(id).set(req.body, (err) => {
+        return res.send(200, { id : id, message: err ? err : 'Salvo com sucesso.' });
     });
 });
 
-exports.app = functions.https.onRequest(app);
+app.post('/certisign', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
-// Create and Deploy Your First Cloud Functions
-// https://firebase.google.com/docs/functions/write-firebase-functions
-
-exports.addAssinantes = functions.https.onRequest((request, response) => {
-
-    return db.ref('assinantes').child(md5(request.body.email)).set(request.body, (err) => {
-        return response.send(200, { id : md5(request.body.email), message: err ? err : 'Salvo com sucesso.' });
-    });
-
+    return res.send(200, { id : req.body.assinantes, message: err ? err : 'Salvo com sucesso.' });
 });
 
-exports.getAssinantes = functions.https.onRequest((request, response) => {
+app.get('/assinantes', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     var getAssinantes = [];
 
@@ -48,17 +46,20 @@ exports.getAssinantes = functions.https.onRequest((request, response) => {
             getAssinantes.push(childData);
         });
 
-        return response.send(200, { message: getAssinantes });
+        return res.send(200, { message: getAssinantes });
     });
-
 });
 
-
-exports.addDownload = functions.https.onRequest((request, response) => {
+app.post('/download', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     return db.ref('assinantes').child(md5(request.body.email)).set(request.body, (err) => {
-        return response.send(200, { id : md5(request.body.email), message: err ? err : 'Salvo com sucesso.' });
+        return res.send(200, { id : md5(request.body.email), message: err ? err : 'Salvo com sucesso.' });
     });
 
 });
 
+exports.app = functions.https.onRequest(app);
+
+// Create and Deploy Your First Cloud Functions
+// https://firebase.google.com/docs/functions/write-firebase-functions

@@ -12,5 +12,7 @@
     "npm": "3.10.6"
   },
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "firebase-functions": "^1.0.1"
+  }
 }
