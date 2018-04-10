@@ -77,11 +77,13 @@ angular.module('honeApp', ['ngMaterial', 'ui.sortable'])
             hone.subscriber = {};
             formData.title  = 'Signer';
             formData.step   = hone.subscribers.length + 1;
-            formData.individualIdentificationCode = isNumeric(formData.individualIdentificationCode);
+            // formData.individualIdentificationCode = isNumeric(formData.individualIdentificationCode);
 
             var headers = {
                 'Content-Type': 'application/json',
             };
+
+            // {"assinantes":[{"name":"Rodolfo Mota Martins","email":"rodolfomotamartins@gmail.com","individualIdentificationCode":"008.198.800-19","title":"Signer","step":1,"$$hashKey":"object:31","certisignDocument":{"name":"Documento sem título.pdf","upload":{"id":"uploads/136720-dff22d0f-978f-4232-af55-44770f914000/Documento sem título.pdf","name":"Documento sem título.pdf"}},"certisignSender":{"id":114055,"chave":"062E3C7997CA8EF3","signUrl":"https://sandbox.portaldeassinaturas.com.br/Assinatura/AssinarFrame/96914?chave=062E3C7997CA8EF3","inProcessing":false,"warnings":[]}}]}
 
             $http({
                 url: 'https://us-central1-certisign-c342c.cloudfunctions.net/app/assinantes',
@@ -97,6 +99,7 @@ angular.module('honeApp', ['ngMaterial', 'ui.sortable'])
                         newFormData = false;
                 }
                 if (newFormData)
+                    delete formData.id;
                     hone.subscribers.push(formData);
                 hone.isLoading = false;
                 if (hone.subscribers.length > 0) {
@@ -154,11 +157,11 @@ angular.module('honeApp', ['ngMaterial', 'ui.sortable'])
                         hone.subscribers[i].certisignSender = response.data;
                     }
                     var formData  = {
-                        assinantes : hone.subscribers[i].certisignSender
+                        assinantes : hone.subscribers
                     };
 
                     $http({
-                        url: 'https://us-central1-certisign-c342c.cloudfunctions.net/app/assinantes',
+                        url: 'https://us-central1-certisign-c342c.cloudfunctions.net/app/certisign',
                         method: "POST",
                         headers: headers,
                         data: JSON.stringify(formData)
