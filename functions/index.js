@@ -17,13 +17,37 @@ app.use(cookieParser);
 app.post('/assinantes', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
 
-    var id = md5(req.body.email + req.body.email);
+    var id = md5(req.body.email);
 
     req.body.date_update = new Date();
 
     return db.ref('assinantes').child(id).set(req.body, (err) => {
-        return res.send(200, { id : id, message: err ? err : 'Salvo com sucesso.' });
+        return res.send(200, { message: err ? err : 'Salvo com sucesso.' });
     });
+});
+
+app.post('/assinantes/uploads', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    for (i=0; i < req.body.length; i++) {
+
+        var id = req.body[i].certisignId;
+
+        req.body[i].date_update = new Date();
+        req.body[i].assinante_id =  md5(req.body[i].email);
+
+        if (i === req.body.length - 1) {
+            db.ref('assinantes/uploads').child(id).set(req.body[i], (err) => {
+                return res.send(200, { message: err ? err : 'Salvo com sucesso.' });
+            });
+        } else {
+            db.ref('assinantes/uploads').child(id).set(req.body[i], (err) => {
+                if (err)
+                    return res.send(200, { message: err });
+            });
+        }
+    }
+
 });
 
 app.post('/certisign', (req, res) => {

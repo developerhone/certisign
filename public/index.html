@@ -77,30 +77,20 @@ angular.module('honeApp', ['ngMaterial', 'ui.sortable'])
             hone.subscriber = {};
             formData.title  = 'Signer';
             formData.step   = hone.subscribers.length + 1;
-            // formData.individualIdentificationCode = isNumeric(formData.individualIdentificationCode);
 
             var headers = {
                 'Content-Type': 'application/json',
             };
-
-            // {"assinantes":[{"name":"Rodolfo Mota Martins","email":"rodolfomotamartins@gmail.com","individualIdentificationCode":"008.198.800-19","title":"Signer","step":1,"$$hashKey":"object:31","certisignDocument":{"name":"Documento sem título.pdf","upload":{"id":"uploads/136720-dff22d0f-978f-4232-af55-44770f914000/Documento sem título.pdf","name":"Documento sem título.pdf"}},"certisignSender":{"id":114055,"chave":"062E3C7997CA8EF3","signUrl":"https://sandbox.portaldeassinaturas.com.br/Assinatura/AssinarFrame/96914?chave=062E3C7997CA8EF3","inProcessing":false,"warnings":[]}}]}
 
             $http({
                 url: 'https://us-central1-certisign-c342c.cloudfunctions.net/app/assinantes',
                 method: "POST",
                 headers: headers,
                 data: JSON.stringify(formData)
-            }).then(function(responde) {    
+            }).then(function(responde) {
                 hone.selectedIndex = 1;
-                formData.id = responde.data.id;
                 var newFormData = true;
-                for (var i = 0; i < hone.subscribers.length; i ++) {
-                    if (hone.subscribers[i].id === formData.id)
-                        newFormData = false;
-                }
-                if (newFormData)
-                    delete formData.id;
-                    hone.subscribers.push(formData);
+                hone.subscribers.push(formData);
                 hone.isLoading = false;
                 if (hone.subscribers.length > 0) {
                     hone.btnDisabled = false;
@@ -155,30 +145,31 @@ angular.module('honeApp', ['ngMaterial', 'ui.sortable'])
                     for (var i = 0; i < hone.subscribers.length; i ++) {
                         hone.subscribers[i].certisignDocument = payload.document;
                         hone.subscribers[i].certisignSender = response.data;
+                        hone.subscribers[i].certisignId = response.data.id;
                     }
-                    var formData  = {
-                        assinantes : hone.subscribers
+
+                    headers = {
+                        'Content-Type': 'application/json',
                     };
 
                     $http({
-                        url: 'https://us-central1-certisign-c342c.cloudfunctions.net/app/certisign',
+                        url: 'https://us-central1-certisign-c342c.cloudfunctions.net/app/assinantes/uploads',
                         method: "POST",
                         headers: headers,
-                        data: JSON.stringify(formData)
+                        data: JSON.stringify(hone.subscribers)
                     }).then(function(responde) {
-                        var certsignRef;
                         hone.btnLabel = 'Concluído com sucesso.';
                         hone.alert = null;
                         hone.successHref = response.data.signUrl;
                         hone.successMsg = true;
                         hone.subscribers = [];
                     }, function(err) {
+                        hone.isLoading = false;
                         hone.btnLabel = 'Tentar novamente';
-                        hone.btnDisabled = false;
                         hone.alert = err.data.message;
                     });
-                },
-                function(err) {
+
+                }, function(err) {
                     hone.btnLabel = 'Tentar novamente';
                     hone.btnDisabled = false;
                     hone.alert = err.data.message;
