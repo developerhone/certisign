@@ -156,7 +156,7 @@ angular.module('honeApp', ['ngMaterial', 'ui.sortable'])
                         url: 'https://us-central1-certisign-c342c.cloudfunctions.net/app/assinantes/uploads',
                         method: "POST",
                         headers: headers,
-                        data: JSON.stringify(hone.subscribers)
+                        data: hone.subscribers
                     }).then(function(responde) {
                         hone.btnLabel = 'Concluído com sucesso.';
                         hone.alert = null;
