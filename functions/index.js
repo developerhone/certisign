@@ -41,10 +41,7 @@ app.post('/assinantes/uploads', (req, res) => {
                 return res.send(200, { message: err ? err : 'Salvo com sucesso.' });
             });
         } else {
-            db.ref('assinantes/uploads').child(id).set(req.body[i], (err) => {
-                if (err)
-                    return res.send(200, { message: err });
-            });
+            db.ref('assinantes/uploads').child(id).set(req.body[i]);
         }
     }
 
@@ -74,11 +71,13 @@ app.get('/assinantes', (req, res) => {
     });
 });
 
-app.post('/download', (req, res) => {
+app.post('/addDownload', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
 
-    return db.ref('assinantes').child(md5(request.body.email)).set(request.body, (err) => {
-        return res.send(200, { id : md5(request.body.email), message: err ? err : 'Salvo com sucesso.' });
+    var id = req.body.DocumentID;
+
+    db.ref('assinantes/download').child(id).set(req.body, (err) => {
+        return res.send(200, { message: err ? err : 'Salvo com sucesso.' });
     });
 
 });
